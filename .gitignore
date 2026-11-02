@@ -7,3 +7,6 @@ __pycache__/
 
 # Temporary files
 *.log
+
+# Original dataset
+data/phiusiil_original.csv

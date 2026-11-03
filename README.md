@@ -1,6 +1,6 @@
 # Phishing Detector
 
-A Python-based phishing detection system using machine learning to analyze URLs.
+A Python-based phishing detection system using machine learning to analyze URLs and identify potential phishing threats.
 
 ## Objective
 
@@ -18,16 +18,20 @@ Analyze URLs and classify them as legitimate or potentially malicious using a tr
 ## Project Structure
 
 ```text
-phishing_detector/
+phishing-detector/
 ├── data/
-│   ├── prepare_dataset.py
-│   └── phishing_dataset.csv
+│   └── urls.csv
 ├── detector/
-├── models/
+│   ├── __init__.py
+│   └── analyzer.py
+│   └── predictor.py
+├── model/
+│   └── phishing_model.pkl
 ├── .gitignore
 ├── main.py
+├── README.md
 ├── requirements.txt
-└── README.md
+└── train.py
 ```
 
 ## Installation
@@ -36,7 +40,7 @@ Clone the repository:
 
 ```bash
 git clone <REPOSITORY_URL>
-cd phishing_detector
+cd phishing-detector
 ```
 
 Create and activate the virtual environment:
@@ -62,9 +66,9 @@ pip install -r requirements.txt
 This project uses the **PhiUSIIL Phishing URL Dataset** from the UCI Machine Learning Repository.
 
 - **Authors:** Arvind Prasad and Shalini Chandra.
-- **Source:** https://archive.ics.uci.edu/dataset/967/
+- **Source:** [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/967/)
 - **Publication:** Prasad, A., & Chandra, S. (2024). *PhiUSIIL: A diverse security profile empowered phishing URL detection framework based on similarity index and incremental learning.*
-- **DOI:** https://doi.org/10.1016/j.cose.2023.103545
+- **DOI:** [10.1016/j.cose.2023.103545](https://doi.org/10.1016/j.cose.2023.103545)
 - **License:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 **Modifications:** The original dataset is filtered, cleaned, and adapted for this project's URL-based phishing detection model. Only URL-related information and classification labels are retained.
@@ -73,11 +77,38 @@ This project uses the **PhiUSIIL Phishing URL Dataset** from the UCI Machine Lea
 - `0` — Legitimate
 - `1` — Phishing
 
+## Machine Learning Model
+
+The project uses a **Random Forest Classifier** implemented with Scikit-learn.
+
+The model is trained using extracted URL features and saved as a serialized `.pkl` file using Joblib.
+
+**Training configuration:**
+- Algorithm: Random Forest
+- Number of estimators: 100
+- Test size: 20%
+- Random state: 42
+- Class weight: Balanced
+
+Model training and evaluation are performed through `train.py`.
+
+To train the model:
+
+```bash
+python train.py
+```
+
+The trained model is saved to:
+
+```text
+model/phishing_model.pkl
+```
+
 ## Roadmap
 
 - [x] Project structure setup
 - [x] Dataset preparation
-- [ ] Machine Learning model training
+- [x] Machine Learning model training
 - [ ] URL analyzer development
 - [ ] Prediction system implementation
 - [ ] Terminal interface integration
@@ -85,4 +116,4 @@ This project uses the **PhiUSIIL Phishing URL Dataset** from the UCI Machine Lea
 
 ## Status
 
-In development — Stage 3: Machine Learning model training.
+In development — URL analyzer development

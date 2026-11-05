@@ -23,7 +23,7 @@ phishing-detector/
 │   └── urls.csv
 ├── detector/
 │   ├── __init__.py
-│   └── analyzer.py
+│   ├── analyzer.py
 │   └── predictor.py
 ├── model/
 │   └── phishing_model.pkl
@@ -43,13 +43,15 @@ git clone <REPOSITORY_URL>
 cd phishing-detector
 ```
 
-Create and activate the virtual environment:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Windows (PowerShell):
+Activate the virtual environment:
+
+**Windows (PowerShell):**
 
 ```powershell
 .venv\Scripts\Activate.ps1
@@ -74,6 +76,7 @@ This project uses the **PhiUSIIL Phishing URL Dataset** from the UCI Machine Lea
 **Modifications:** The original dataset is filtered, cleaned, and adapted for this project's URL-based phishing detection model. Only URL-related information and classification labels are retained.
 
 **Classification:**
+
 - `0` — Legitimate
 - `1` — Phishing
 
@@ -84,6 +87,7 @@ The project uses a **Random Forest Classifier** implemented with Scikit-learn.
 The model is trained using extracted URL features and saved as a serialized `.pkl` file using Joblib.
 
 **Training configuration:**
+
 - Algorithm: Random Forest
 - Number of estimators: 100
 - Test size: 20%
@@ -109,11 +113,11 @@ model/phishing_model.pkl
 - [x] Project structure setup
 - [x] Dataset preparation
 - [x] Machine Learning model training
-- [ ] URL analyzer development
+- [x] URL analyzer development
 - [ ] Prediction system implementation
 - [ ] Terminal interface integration
 - [ ] Testing and documentation
 
 ## Status
 
-In development — URL analyzer development
+In development — Prediction system implementation.

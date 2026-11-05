@@ -27,6 +27,8 @@ phishing-detector/
 │   └── predictor.py
 ├── model/
 │   └── phishing_model.pkl
+├── tests/
+│   └── test_predictor.py
 ├── .gitignore
 ├── main.py
 ├── README.md
@@ -108,16 +110,43 @@ The trained model is saved to:
 model/phishing_model.pkl
 ```
 
+## URL Analyzer
+
+The URL analyzer is responsible for validating URLs and extracting relevant features for the Machine Learning model.
+
+It extracts 12 features, including:
+
+- URL, domain, and path length
+- Number of dots, hyphens, special characters, and digits
+- Number of subdomains
+- HTTPS usage
+- IP address detection
+- Suspicious words detection
+
+These features are organized into a structured format that can be processed by the prediction system.
+
+## Prediction System
+
+The prediction system uses the trained Random Forest model to classify URLs.
+
+The `predictor.py` module:
+
+- Loads the trained model using Joblib.
+- Extracts URL features through `analyzer.py`.
+- Organizes the extracted features into a DataFrame.
+- Predicts whether a URL is legitimate or potentially malicious.
+- Calculates the model's estimated confidence for the predicted class.
+
 ## Roadmap
 
 - [x] Project structure setup
 - [x] Dataset preparation
 - [x] Machine Learning model training
 - [x] URL analyzer development
-- [ ] Prediction system implementation
+- [x] Prediction system implementation
 - [ ] Terminal interface integration
 - [ ] Testing and documentation
 
 ## Status
 
-In development — Prediction system implementation.
+In development — Terminal interface integration.

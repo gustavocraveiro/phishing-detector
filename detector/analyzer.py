@@ -95,7 +95,8 @@ def extract_features(url):
     if not validate_url(url):
         raise ValueError("Invalid URL provided.")
 
-    url = url.strip()
+        # Normalize: remove trailing slashes so "site.com/" and "site.com" are equal
+    url = url.strip().rstrip("/")
     parsed = urlsplit(url if "://" in url else f"//{url}")
 
     hostname = parsed.hostname or ""

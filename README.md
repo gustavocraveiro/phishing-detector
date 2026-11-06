@@ -110,6 +110,38 @@ The trained model is saved to:
 model/phishing_model.pkl
 ```
 
+## Usage
+
+Run the commands from the project root. The model must be trained first (`python train.py`).
+
+Analyze a single URL:
+
+```bash
+python main.py https://www.google.com
+```
+
+Analyze multiple URLs:
+
+```bash
+python main.py https://www.google.com https://example.com
+```
+
+Interactive mode (type `q`, `quit`, or `exit` to leave):
+
+```bash
+python main.py
+```
+
+Example output:
+
+```text
+URL:        https://www.google.com
+Prediction: Legitimate
+Reason:     Trusted domain
+```
+
+The program exits with code `1` if any URL is invalid.
+
 ## URL Analyzer
 
 The URL analyzer is responsible for validating URLs and extracting relevant features for the Machine Learning model.
@@ -136,6 +168,14 @@ The `predictor.py` module:
 - Organizes the extracted features into a DataFrame.
 - Predicts whether a URL is legitimate or potentially malicious.
 - Calculates the model's estimated confidence for the predicted class.
+- Skips the model for URLs from a small allowlist of trusted domains and suffixes (e.g., `edu.br`, `gov.br`), returning "Trusted domain" as the reason.
+- Normalizes URLs by removing trailing slashes, so `site.com/` and `site.com` produce the same features.
+
+## Limitations
+
+- The model analyzes only the structure of the URL, not domain reputation or page content.
+- A small allowlist of trusted domains and suffixes bypasses the model to reduce false positives.
+- Results are estimates and must not be treated as a security guarantee.
 
 ## Roadmap
 
@@ -144,9 +184,9 @@ The `predictor.py` module:
 - [x] Machine Learning model training
 - [x] URL analyzer development
 - [x] Prediction system implementation
-- [ ] Terminal interface integration
+- [x] Terminal interface integration
 - [ ] Testing and documentation
 
 ## Status
 
-In development — Terminal interface integration.
+In development — Testing and documentation.

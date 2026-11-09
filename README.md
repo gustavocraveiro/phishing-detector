@@ -14,6 +14,7 @@ Analyze URLs and classify them as legitimate or potentially malicious using a tr
 - NumPy
 - TLDExtract
 - Joblib
+- Pytest
 
 ## Project Structure
 
@@ -28,9 +29,11 @@ phishing-detector/
 ├── model/
 │   └── phishing_model.pkl
 ├── tests/
+│   ├── test_analyzer.py
 │   └── test_predictor.py
 ├── .gitignore
 ├── main.py
+├── pytest.ini
 ├── README.md
 ├── requirements.txt
 └── train.py
@@ -171,6 +174,16 @@ The `predictor.py` module:
 - Skips the model for URLs from a small allowlist of trusted domains and suffixes (e.g., `edu.br`, `gov.br`), returning "Trusted domain" as the reason.
 - Normalizes URLs by removing trailing slashes, so `site.com/` and `site.com` produce the same features.
 
+## Testing
+
+Run the test suite from the project root:
+
+```bash
+pytest
+```
+
+The tests cover URL validation, feature extraction, the trusted domain allowlist, and the prediction output structure.
+
 ## Limitations
 
 - The model analyzes only the structure of the URL, not domain reputation or page content.
@@ -185,8 +198,8 @@ The `predictor.py` module:
 - [x] URL analyzer development
 - [x] Prediction system implementation
 - [x] Terminal interface integration
-- [ ] Testing and documentation
+- [x] Testing and documentation
 
 ## Status
 
-In development — Testing and documentation.
+Completed.

@@ -51,11 +51,12 @@ def predict_url(url):
 
     confidence = class_probabilities[prediction]
 
-    # Classification result
+        # Classification result
     result = {
         "url": url,
         "prediction": "Phishing" if prediction == 1 else "Legitimate",
-        "confidence": round(float(confidence) * 100, 2)
+        "confidence": round(float(confidence) * 100, 2),
+        "reason": "Model prediction"
     }
 
     return result
@@ -81,7 +82,7 @@ def is_trusted(url):
     parsed = urlsplit(url if "://" in url else f"//{url}")
     extracted = extractor(parsed.hostname or "")
 
-    registered_domain = extracted.registered_domain.lower()
+    registered_domain = extracted.top_domain_under_public_suffix.lower()
     suffix = extracted.suffix.lower()
 
     return registered_domain in TRUSTED_DOMAINS or suffix in TRUSTED_SUFFIXES
